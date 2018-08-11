@@ -1,0 +1,127 @@
+
+<html>
+<head>
+<title> CS440 Homework Template: HW[x] Student Name [xxx]  </title>
+<style>
+<!--
+body{
+font-family: 'Trebuchet MS', Verdana;
+}
+p{
+font-family: 'Trebuchet MS', Times;
+margin: 10px 10px 15px 20px;
+}
+h3{
+margin: 5px;
+}
+h2{
+margin: 10px;
+}
+h1{
+margin: 10px 0px 0px 20px;
+}
+div.main-body{
+align:center;
+margin: 30px;
+}
+hr{
+margin:20px 0px 20px 0px;
+}
+-->
+</style>
+</head>
+
+<body>
+<center>
+<a href="http://www.bu.edu"><img border="0" src="http://www.cs.bu.edu/fac/betke/images/bu-logo.gif"
+width="119" height="120"></a>
+</center>
+
+<h1>CS 440 Programming Assignment 2</h1>
+<p> 
+ Hand Gestures <br>
+ Azubuike Eleonu <br>
+ No teammates<br>
+    May 3, 2018 
+</p>
+
+<div class="main-body">
+<hr>
+<h2> Problem Definition </h2>
+<p>
+The motivation behind our project is to distinguish simple hand gestures by implementing our algorithm using the techniques such as convex hull and convexity defects. I had to use some of the techniques we discussed in class and then do research on how to do it in Python. 
+
+
+</p>
+
+<hr>
+<h2> Method and Implementation </h2>
+<li><p> background differencing: used BackgroundSubtractorMOG2 to subtract background.
+<p>	bgModel = cv2.BackgroundSubtractorMOG2(0, bgSubThreshold)
+<p>	fgmask = bgModel.apply(frame)
+<li><p> frame-to-frame differencing: we apply the model to a frame. 
+<p>	res = cv2.bitwise_and(frame, frame, mask=fgmask)
+<li><p> skin-color detection (e.g., thresholding red and green pixel values)
+<p> cv2.threshold(blurred, 127, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
+<li><p> Convex Hull
+<p> cv2.convexHull(cnt)
+
+<h2> Requirements </h2>  
+<p>The user should be sitting in front of the still camera with their torso in the view of
+                    the camera and try to avoid any excessive movement with their body.
+<p>The user should try to be in a well lit area with a background that does not have
+                    many moving background objects and should have a background that doesn't blend with the user's skin color.</li>
+<p>The user should not move their hand excessively while the program is computing the hand gestures. 
+
+<h2> Different Gestures used</h2>
+<h2> Peace Sign (Blur, Threshold, Contour) </h2>
+<p> <img src="Peace_sign_1.png"> </td>
+<p> <img src="Peace_Sign_Cont.png"> </td> 
+<p> <img src="Peace_Sign_Thresh.png"> </td>
+
+<h2> Fist (Blur, Threshold, Contour) </h2>
+<p> <img src="fist.png"> </td> 
+<p> <img src="fist_contours.png"> </td>
+<p> <img src="fist_ori.png"> </td> 
+</p>
+<h2> Full Hand (Blur, Threshold, Contour) </h2>
+<p> <img src="Full_Hand.png"> </td>
+<p> <img src="Full_hand_cont.png"> </td>
+<p> <img src="Full_hand_ori.png"> </td>
+
+</p>
+
+
+
+<h2> Confusion Matrix </h2>
+<p> <img src="Confusion_Matrix.png"> </td>
+
+
+<hr>
+<h2>Conclusions</h2>
+<p>
+<p>This was a very long project. It took longer than usual because of Easter, as well as the fact that I kept getting errors trying to do it in C++ with the use of the debugger in the FindContours function. I eventually decided to do the project in Python 2.7 and I was able to get the threshold and contours functions running, the only problem was that the blobs would appear and dissapear so I avoided them altogether. 
+
+In the Confusion Matrix, I tested each gesture 10 times. Although the contour window was small, the model for gestures seemed to work pretty well. I think that there are many ways to improve and expand on the gesture recognition in this project, because while this is based entirely on movement, a more full-featured gesture recognition program could incorporate techniques for analyzing still images like an axial-projection histogram for skin tone detection.
+</p>
+</p>
+
+
+<hr>
+<h2> Credits and Bibliography </h2>
+<p>References:</p>
+<ul>
+<p> Amiraj Dhawan, Vipul Honrao, 2013, Implementation of Hand Detection based Techniques for Human Computer Interaction, International Journal of Computer Applications (0975 8887)
+<p> https://www.youtube.com/watch?v=DEHk‐5xbJhU 
+
+<p> OpenCV documentation: http://docs.opencv.org/2.4.13/
+<p> Opencv python hand gesture recognition: http://creat-tabu.blogspot.com/2013/08/opencv-python-hand-gesture-recognition.html
+
+<hr>
+<h2>Contributions</h2>
+<p>Azu Eleonu: Code & Report<p>
+<p>'Have to give myself credit!'</p>
+<hr>
+
+</body>
+</html>
